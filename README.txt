@@ -42,7 +42,6 @@ Files in the folder "Makefiles" are the Makefiles we wrote in case you need to r
 For example, if you want to run all the "SingleSource" test cases of our genetic implementation, you can run go to the folder "<root>/project/test-suite-3.0/SingleSource",and type "make TEST=idemGA report". It will generate the results on the screen and generate the report.txt file.
 
 Thanks for reading.
-If you have any questions regarding installation and have the program running, please email Raphael or me.
+If you have any questions regarding installation and have the program running, please email me.
 
-Best regards,
 Shuyi
