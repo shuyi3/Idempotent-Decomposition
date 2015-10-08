@@ -1,37 +1,38 @@
 Instructions to compile and run our program
 
-	Create a folder to host the compiler (to be referenced as <root> ).
-	Go to the folder <root>
-cd <root>
-	Download the GitHub source of LLVM with Idempotence extensions
- git clone https://github.com/mdekruijf/llvm.git 
-cd llvm
-git checkout idempotence extensions
-	Download clang
-cd tools
-svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 149259
-	Go to the folder <root>/llvm/lib/codegen
-cd <root>/llvm/lib/codegen
+- Create a folder to host the compiler (to be referenced as <root> ).
+- Go to the folder <root>
+	cd <root>
+	
+- Download the GitHub source of LLVM with Idempotence extensions
+ 	git clone https://github.com/mdekruijf/llvm.git 
+	cd llvm
+	git checkout idempotence extensions
+	
+- Download clang
+	cd tools
+	svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 149259
+	
+- Go to the folder <root>/llvm/lib/codegen
+	cd <root>/llvm/lib/codegen
 
-	Replace the files MemoryIdempotenceAnalysis.cpp and ConstructIdempotentRegions.cpp with the ones provided in the submission of this report.
+- Replace the files MemoryIdempotenceAnalysis.cpp and ConstructIdempotentRegions.cpp with the ones provided in the submission of this report.
 
-	Configure and Make the executable in LLVM¡¯s root folder.
+- Configure and Make the executable in LLVM¡¯s root folder.
+	cd <root>/llvm
+	./configure -disable-optimized
+	make
 
-cd <root>/llvm
-./configure -disable-optimized
-make
+- The executables will be generated in the folder <root>/llvm/Debug+Asserts/bin
 
-The executables will be generated in the folder <root>/llvm/Debug+Asserts/bin
+- List the parameters added in the executable llc
+	cd <root>/llvm/Debug+Asserts/bin
+	llc -help-hidden
 
-	List the parameters added in the executable llc
-cd <root>/llvm/Debug+Asserts/bin
-llc -help-hidden
-
-	Compile and analyze C/C++ programs using our program
-export PATH=<root>/llvm/Debug+Asserts/bin:$PATH
-clang -s -emit-llvm <file>.c -o <file>.bc
-llc   -idempotence-construction=size <parameters defined in this report> <file>.bc -o <file>.s
-
+- Compile and analyze C/C++ programs using our program
+	export PATH=<root>/llvm/Debug+Asserts/bin:$PATH
+	clang -s -emit-llvm <file>.c -o <file>.bc
+	llc   -idempotence-construction=size <parameters defined in this report> <file>.bc -o <file>.s
 
 Here are some notes for our project software installation.
 
